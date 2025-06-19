@@ -90,12 +90,7 @@
         min-height: 400px; /* Minimum height for standard frames */
     }
 
-    /* Specific style for the vertically smaller image container */
-    .image-container--small-vertical {
-        max-width: 250px; /* Smaller width for this specific image */
-        padding: 10px; /* Reduced padding for a tighter frame */
-        min-height: unset; /* Remove min-height for this specific container */
-    }
+    /* Removed .image-container--small-vertical as it's no longer needed in the main gallery */
 
     .image-container img {
         display: block;
@@ -147,7 +142,7 @@
         padding: 20px 0; /* Padding for the section itself */
     }
 
-    .instax-container {
+    .instax-container-frame { /* Renamed to avoid conflict with .image-container */
         /* This div acts as the white Instax print itself */
         background-color: #fff;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
@@ -244,12 +239,6 @@
             min-height: 300px; /* Adjust min-height for smaller screens */
         }
 
-        .image-container--small-vertical {
-            max-width: 50%; /* Adjust smaller image for mobile */
-            padding: 6px; /* Further reduced padding for mobile */
-            min-height: unset; /* Ensure it still shrinks */
-        }
-
         .about-me, .contact-info, .instax-section {
             padding: 30px 20px;
         }
@@ -262,7 +251,7 @@
             font-size: 1em;
         }
 
-        .instax-container {
+        .instax-container-frame { /* Adjusted name */
             width: 80%; /* Make it take up more width on smaller screens */
             padding-top: 10px;
             padding-left: 10px;
@@ -297,12 +286,7 @@
             min-height: 250px; /* Further reduce min-height */
         }
 
-        .image-container--small-vertical {
-            max-width: 60%; /* Further adjust smaller image for very small screens */
-            padding: 5px;
-        }
-
-        .instax-container {
+        .instax-container-frame { /* Adjusted name */
             width: 90%; /* Even wider for very small screens */
             padding-top: 8px;
             padding-left: 8px;
@@ -356,8 +340,17 @@
         <div class="image-container">
             <img src="IMG_7870.JPG" alt="Model Portfolio Image 9">
         </div>
-        <div class="image-container image-container--small-vertical">
-            <img src="IMG_7367.jpg" alt="Model Portfolio Image 10">
+        <!-- IMG_7367.jpg has been removed from here -->
+    </section>
+
+    <section class="instax-section">
+        <h2>Instax Moment</h2>
+        <div class="instax-wrapper">
+            <div class="instax-container-frame"> <!-- Adjusted class name -->
+                <div class="instax-image-area">
+                    <img src="IMG_7367.jpg" alt="Instax Photo">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -373,17 +366,6 @@
         <p>Telefon: <a href="tel:+48604527521">+48 604 527 521</a></p>
         <p>Email: <a href="mailto:wiktoriaozog2000@gmail.com">wiktoriaozog2000@gmail.com</a></p>
     </section>
-
-    <section class="instax-section">
-        <h2>Instax Moment</h2>
-        <div class="instax-wrapper">
-            <div class="instax-container">
-                <div class="instax-image-area">
-                    <img src="IMG_7367.jpg" alt="Instax Photo">
-                </div>
-            </div>
-        </div>
-    </section>
 </main>
 
 <nav class="bottom-menu">
@@ -398,3 +380,4 @@
 
 </body>
 </html>
+
