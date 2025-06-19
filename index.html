@@ -79,9 +79,15 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
         padding: 15px; /* Inner padding for the "frame" effect */
         background-color: #fff;
-        max-width: 450px; /* Limit image container width */
+        max-width: 450px; /* Default max-width for larger images */
         width: 100%; /* Ensure responsiveness */
         box-sizing: border-box;
+    }
+
+    /* Style for smaller image container */
+    .image-container.small {
+        max-width: 300px; /* Smaller max-width for this specific image */
+        padding: 10px; /* Slightly smaller padding for its frame */
     }
 
     .image-container img {
@@ -186,6 +192,10 @@
             margin: 0 auto;
         }
 
+        .image-container.small {
+            max-width: 60%; /* Adjust smaller image for mobile */
+        }
+
         .about-me, .contact-info {
             padding: 30px 20px;
         }
@@ -222,6 +232,11 @@
 
         .image-container {
             padding: 10px;
+        }
+
+        .image-container.small {
+            max-width: 70%; /* Further adjust smaller image for very small screens */
+            padding: 8px;
         }
 
         .bottom-menu ul {
@@ -270,7 +285,7 @@
         <div class="image-container">
             <img src="IMG_7870.JPG" alt="Model Portfolio Image 9">
         </div>
-        <div class="image-container">
+        <div class="image-container small"> <!-- Added 'small' class here -->
             <img src="IMG_7367.jpg" alt="Model Portfolio Image 10">
         </div>
     </section>
