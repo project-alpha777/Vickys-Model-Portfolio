@@ -91,25 +91,39 @@
         object-fit: cover;
     }
 
-    .about-me {
+    .about-me, .contact-info {
         max-width: 700px;
         margin: 0 auto;
         padding: 40px 0;
-        border-top: 1px solid #eee; /* Subtle line above about me */
+        border-top: 1px solid #eee; /* Subtle line above sections */
         padding-top: 60px;
     }
 
-    .about-me h2 {
+    .about-me h2, .contact-info h2 {
         font-size: 2em;
         margin-bottom: 20px;
         letter-spacing: 1px;
         text-transform: uppercase;
     }
 
-    .about-me p {
+    .about-me p, .contact-info p {
         font-size: 1.1em;
         line-height: 1.8;
         color: #333;
+    }
+
+    .contact-info p {
+        margin-bottom: 10px;
+    }
+
+    .contact-info a {
+        color: #000;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+        color: #666;
     }
 
     /* Fixed Bottom Menu */
@@ -172,15 +186,15 @@
             margin: 0 auto;
         }
 
-        .about-me {
+        .about-me, .contact-info {
             padding: 30px 20px;
         }
 
-        .about-me h2 {
+        .about-me h2, .contact-info h2 {
             font-size: 1.6em;
         }
 
-        .about-me p {
+        .about-me p, .contact-info p {
             font-size: 1em;
         }
 
@@ -263,6 +277,12 @@
         <p>
             Witaj na mojej stronie! Jestem Wiktoria, modelka z pasją do tworzenia i opowiadania historii poprzez obraz. Moja praca to nie tylko pozowanie, ale przede wszystkim współpraca z artystami, fotografami i stylistami, aby każda sesja była unikalnym dziełem. Inspiruje mnie moda, sztuka i piękno w każdej formie. Dążę do perfekcji w każdym ujęciu, wnosząc do projektu autentyczność i profesjonalizm. Zapraszam do zapoznania się z moim portfolio.
         </p>
+    </section>
+
+    <section class="contact-info">
+        <h2>Kontakt</h2>
+        <p>Telefon: <a href="tel:+48604527521">+48 604 527 521</a></p>
+        <p>Email: <a href="mailto:wiktoriaozog2000@gmail.com">wiktoriaozog2000@gmail.com</a></p>
     </section>
 </main>
 
