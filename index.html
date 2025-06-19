@@ -1,62 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Model Portfolio</title>
+    <title>Portfolio - Wiktoria Vicky Ożóg</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f5f5f5;
         }
 
         header {
-            background-color: #000;
-            color: #fff;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #f9f9f9;
             text-align: center;
             padding: 10px 0;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
+        nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .photos {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            margin-bottom: 20px;
         }
 
-        .photo {
-            margin: 10px;
-            border: 2px solid #000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+        .photos img {
+            margin: 0 10px;
+            max-width: 45%;
+            border-radius: 5px;
         }
 
-        .photo img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .about-me {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: left;
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Model Portfolio</h1>
+        <h1>Wiktoria Vicky Ożóg</h1>
     </header>
-    
-    <div class="container">
-        <div class="photo">
+
+    <nav>
+        <a href="#sesja">Sesja</a>
+        <a href="#fashion">Fashion</a>
+        <a href="#video">Video</a>
+        <a href="#beauty">Beauty</a>
+        <a href="#health">Health</a>
+    </nav>
+
+    <main>
+        <div class="photos">
             <img src="IMG_7896.JPG" alt="Photo 1">
-        </div>
-        <div class="photo">
             <img src="IMG_8042.JPG" alt="Photo 2">
         </div>
-    </div>
+
+        <div class="about-me">
+            <h2>O mnie</h2>
+            <p>Cześć! Jestem Wiktoria Vicky Ożóg – modelka z pasją do mody i sztuki fotografii. Podążam za swoimi marzeniami
+                i
+                staram się wciąż rozwijać w świecie mody i piękna. Zapraszam do zapoznania się z moją twórczością!</p>
+        </div>
+    </main>
 </body>
 
 </html>
-
- 
