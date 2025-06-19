@@ -82,19 +82,30 @@
         max-width: 450px; /* Default max-width for larger images */
         width: 100%; /* Ensure responsiveness */
         box-sizing: border-box;
+
+        /* Flexbox for centering image within the container */
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        /* Height will be determined by content or min-height */
+        min-height: 400px; /* Minimum height for standard frames */
     }
 
-    /* Style for smaller image container */
-    .image-container.small {
-        max-width: 250px; /* Even smaller max-width for this specific image */
-        padding: 8px; /* Reduced padding for a tighter frame */
+    /* Specific style for the vertically smaller image container */
+    .image-container--small-vertical {
+        max-width: 250px; /* Smaller width for this specific image */
+        padding: 10px; /* Reduced padding for a tighter frame */
+        min-height: unset; /* Remove min-height for this specific container */
+        /* Height will be determined by the image itself */
     }
 
     .image-container img {
         display: block;
-        width: 100%;
-        height: auto;
-        object-fit: cover;
+        max-width: 100%; /* Image scales down to fit width */
+        max-height: 100%; /* Image scales down to fit height */
+        object-fit: contain; /* This is key: image scales to fit, entire image visible */
+        /* If you prefer cropping for a "full bleed" look, use object-fit: cover;
+           but then the frame height won't strictly "fit" the image's original height. */
     }
 
     .about-me, .contact-info {
@@ -190,11 +201,14 @@
         .image-container {
             max-width: 90%; /* Adjust for smaller screens */
             margin: 0 auto;
+            padding: 10px; /* Adjust padding for smaller screens */
+            min-height: 300px; /* Adjust min-height for smaller screens */
         }
 
-        .image-container.small {
+        .image-container--small-vertical {
             max-width: 50%; /* Adjust smaller image for mobile */
             padding: 6px; /* Further reduced padding for mobile */
+            min-height: unset; /* Ensure it still shrinks */
         }
 
         .about-me, .contact-info {
@@ -232,10 +246,11 @@
         }
 
         .image-container {
-            padding: 10px;
+            padding: 8px;
+            min-height: 250px; /* Further reduce min-height */
         }
 
-        .image-container.small {
+        .image-container--small-vertical {
             max-width: 60%; /* Further adjust smaller image for very small screens */
             padding: 5px;
         }
@@ -286,7 +301,7 @@
         <div class="image-container">
             <img src="IMG_7870.JPG" alt="Model Portfolio Image 9">
         </div>
-        <div class="image-container small"> <!-- Added 'small' class here -->
+        <div class="image-container image-container--small-vertical"> <!-- Specific class for the smaller vertical image -->
             <img src="IMG_7367.jpg" alt="Model Portfolio Image 10">
         </div>
     </section>
