@@ -1,90 +1,259 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Wiktoria Vicky Ożóg</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiktoria Vicky Ożóg - Model Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        color: #000;
+        line-height: 1.6;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        margin: 0;
+    }
+
+    p {
+        font-family: 'Lora', serif;
+        font-weight: 400;
+    }
+
+    /* Navbar */
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        z-index: 1000;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Thin line under navbar */
+    }
+
+    .navbar h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5em;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 700; /* Slightly bolder for impact */
+    }
+
+    /* Main Content */
+    .main-content {
+        padding-top: 120px; /* Space for fixed navbar */
+        padding-bottom: 100px; /* Space for fixed bottom menu */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100vh - 220px); /* Adjust for nav and footer */
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px; /* Space between images */
+        margin-bottom: 60px;
+    }
+
+    .image-container {
+        border: 1px solid #eee; /* Subtle border */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        padding: 15px; /* Inner padding for the "frame" effect */
+        background-color: #fff;
+        max-width: 450px; /* Limit image container width */
+        width: 100%; /* Ensure responsiveness */
+        box-sizing: border-box;
+    }
+
+    .image-container img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .about-me {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 40px 0;
+        border-top: 1px solid #eee; /* Subtle line above about me */
+        padding-top: 60px;
+    }
+
+    .about-me h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .about-me p {
+        font-size: 1.1em;
+        line-height: 1.8;
+        color: #333;
+    }
+
+    /* Fixed Bottom Menu */
+    .bottom-menu {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        z-index: 999;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1); /* Thin line above menu */
+    }
+
+    .bottom-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        gap: 40px; /* Space between menu items */
+    }
+
+    .bottom-menu li a {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #000;
+        font-size: 1em;
+        letter-spacing: 1.5px;
+        padding: 5px 10px;
+        transition: color 0.3s ease, letter-spacing 0.3s ease;
+    }
+
+    .bottom-menu li a:hover {
+        color: #666;
+        letter-spacing: 2px; /* Subtle hover effect */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .navbar h1 {
+            font-size: 1.8em;
         }
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
+        .main-content {
+            padding-top: 100px;
+            padding-bottom: 80px;
         }
 
-        nav {
-            background-color: #f9f9f9;
-            text-align: center;
-            padding: 10px 0;
+        .image-gallery {
+            flex-direction: column;
+            gap: 30px;
         }
 
-        nav a {
-            margin: 0 10px;
-            color: #333;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .photos {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .photos img {
-            margin: 0 10px;
-            max-width: 45%;
-            border-radius: 5px;
+        .image-container {
+            max-width: 90%; /* Adjust for smaller screens */
+            margin: 0 auto;
         }
 
         .about-me {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            text-align: left;
+            padding: 30px 20px;
         }
-    </style>
+
+        .about-me h2 {
+            font-size: 1.6em;
+        }
+
+        .about-me p {
+            font-size: 1em;
+        }
+
+        .bottom-menu ul {
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 0 10px;
+        }
+
+        .bottom-menu li a {
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .navbar h1 {
+            font-size: 1.5em;
+        }
+
+        .main-content {
+            padding-top: 80px;
+            padding-bottom: 70px;
+        }
+
+        .image-container {
+            padding: 10px;
+        }
+
+        .bottom-menu ul {
+            gap: 10px;
+        }
+
+        .bottom-menu li a {
+            font-size: 0.8em;
+            padding: 3px 5px;
+        }
+    }
+</style>
 </head>
-
 <body>
-    <header>
-        <h1>Wiktoria Vicky Ożóg</h1>
-    </header>
 
-    <nav>
-        <a href="#sesja">Sesja</a>
-        <a href="#fashion">Fashion</a>
-        <a href="#video">Video</a>
-        <a href="#beauty">Beauty</a>
-        <a href="#health">Health</a>
-    </nav>
+<nav class="navbar">
+    <h1>Wiktoria Vicky Ożóg</h1>
+</nav>
 
-    <main>
-        <div class="photos">
-            <img src="IMG_7896.JPG" alt="Photo 1">
-            <img src="IMG_8042.JPG" alt="Photo 2">
+<main class="main-content">
+    <section class="image-gallery">
+        <div class="image-container">
+            <img src="IMG_7896.JPG" alt="Model Portfolio Image 1">
         </div>
-
-        <div class="about-me">
-            <h2>O mnie</h2>
-            <p>Cześć! Jestem Wiktoria Vicky Ożóg – modelka z pasją do mody i sztuki fotografii. Podążam za swoimi marzeniami
-                i
-                staram się wciąż rozwijać w świecie mody i piękna. Zapraszam do zapoznania się z moją twórczością!</p>
+        <div class="image-container">
+            <img src="IMG_8042.JPG" alt="Model Portfolio Image 2">
         </div>
-    </main>
+    </section>
+
+    <section class="about-me">
+        <h2>O mnie</h2>
+        <p>
+            Witaj na mojej stronie! Jestem Wiktoria, modelka z pasją do tworzenia i opowiadania historii poprzez obraz. Moja praca to nie tylko pozowanie, ale przede wszystkim współpraca z artystami, fotografami i stylistami, aby każda sesja była unikalnym dziełem. Inspiruje mnie moda, sztuka i piękno w każdej formie. Dążę do perfekcji w każdym ujęciu, wnosząc do projektu autentyczność i profesjonalizm. Zapraszam do zapoznania się z moim portfolio.
+        </p>
+    </section>
+</main>
+
+<nav class="bottom-menu">
+    <ul>
+        <li><a href="#sesja">Sesja</a></li>
+        <li><a href="#fashion">Fashion</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#beauty">Beauty</a></li>
+        <li><a href="#health">Health</a></li>
+    </ul>
+</nav>
+
 </body>
-
 </html>
