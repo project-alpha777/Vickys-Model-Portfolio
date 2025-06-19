@@ -1,335 +1,112 @@
+Okay, this is a fun design challenge! We'll create a dedicated HTML and CSS structure to mimic the look of an Instax print for IMG_7367.jpg.
+
+Here's how we'll approach it:
+
+Outer Container: A main div to hold the entire Instax print, allowing us to center it on the page.
+Instax Frame: A div that acts as the white border. We'll use padding to create the borders:
+padding-top, padding-left, padding-right will be small.
+padding-bottom will be much larger.
+Image Container: Inside the frame, another div will hold the image. This is where we'll use Flexbox to center the image.
+Image Styling: The img tag itself will be styled to fit within its container, using object-fit: cover or contain depending on preference (I'll use cover for a full-bleed look within the Instax frame's image area).
+
+Here's the complete HTML and CSS code:
+
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wiktoria Vicky Ożóg - Model Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Instax Photo Frame</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-    /* General Styles */
     body {
         font-family: 'Open Sans', sans-serif;
         margin: 0;
-        padding: 0;
+        padding: 20px; /* Some padding around the whole page */
+        background-color: #f0f0f0; /* Light gray background to make the white frame stand out */
+        display: flex;
+        justify-content: center; /* Center the Instax frame horizontally */
+        align-items: center; /* Center the Instax frame vertically */
+        min-height: 100vh; /* Ensure body takes full viewport height */
+        box-sizing: border-box;
+    }
+
+    .instax-container {
+        /* This div acts as the white Instax print itself */
         background-color: #fff;
-        color: #000;
-        line-height: 1.6;
-        overflow-x: hidden; /* Prevent horizontal scroll */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        display: flex; /* Use flex to center the image area */
+        flex-direction: column; /* Stack padding and image area vertically */
+        /* Define the overall size of the Instax print */
+        width: 300px; /* Adjust as needed */
+        height: auto; /* Height will be determined by padding and image aspect ratio */
+        padding-top: 15px;    /* Narrow top border */
+        padding-left: 15px;   /* Narrow left border */
+        padding-right: 15px;  /* Narrow right border */
+        padding-bottom: 60px; /* Much thicker bottom border */
+        box-sizing: border-box; /* Include padding in the width/height */
     }
 
-    /* Typography */
-    h1, h2, h3, h4, h5, h6 {
-        font-family: 'Playfair Display', serif;
-        font-weight: 400;
-        margin: 0;
+    .instax-image-area {
+        /* This is the area where the photo itself will sit */
+        width: 100%;
+        /* The height will be proportional to the width to maintain a square-ish photo area */
+        /* A common Instax photo aspect ratio is roughly 1:1 or slightly wider than tall */
+        /* We'll use a padding-bottom trick to maintain aspect ratio for the image area */
+        padding-bottom: 100%; /* Creates a square aspect ratio based on width */
+        position: relative; /* Needed for absolute positioning of the image */
+        overflow: hidden; /* Hide any overflow if image doesn't fit perfectly */
+        background-color: #eee; /* Placeholder background if image doesn't load */
     }
 
-    p {
-        font-family: 'Lora', serif;
-        font-weight: 400;
-    }
-
-    /* Navbar */
-    .navbar {
-        position: fixed;
+    .instax-image-area img {
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #fff;
-        padding: 20px 0;
+        height: 100%;
+        object-fit: cover; /* Image covers the entire area, cropping if necessary */
+        /* Use object-fit: contain; if you want the entire image to always be visible,
+           but it might leave empty space within the image area. */
+        display: block; /* Remove extra space below image */
+    }
+
+    /* Optional: Add some text below the photo on the thick border */
+    .instax-caption {
         text-align: center;
-        z-index: 1000;
-        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1); /* Thin line under navbar */
+        font-size: 0.9em;
+        color: #555;
+        margin-top: 10px; /* Space between image area and caption */
+        /* Position caption within the bottom padding area if desired,
+           but simpler to just let it flow after the image area */
     }
 
-    .navbar h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.5em;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-weight: 700; /* Slightly bolder for impact */
-    }
-
-    /* Main Content */
-    .main-content {
-        padding-top: 120px; /* Space for fixed navbar */
-        padding-bottom: 100px; /* Space for fixed bottom menu */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: calc(100vh - 220px); /* Adjust for nav and footer */
-        text-align: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .image-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 40px; /* Space between images */
-        margin-bottom: 60px;
-    }
-
-    .image-container {
-        border: 1px solid #eee; /* Subtle border */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
-        padding: 15px; /* Inner padding for the "frame" effect */
-        background-color: #fff;
-        max-width: 450px; /* Default max-width for larger images */
-        width: 100%; /* Ensure responsiveness */
-        box-sizing: border-box;
-
-        /* Flexbox for centering image within the container */
-        display: flex;
-        justify-content: center; /* Center horizontally */
-        align-items: center; /* Center vertically */
-        /* Height will be determined by content or min-height */
-        min-height: 400px; /* Minimum height for standard frames */
-    }
-
-    /* Specific style for the vertically smaller image container */
-    .image-container--small-vertical {
-        max-width: 250px; /* Smaller width for this specific image */
-        padding: 10px; /* Reduced padding for a tighter frame */
-        min-height: unset; /* Remove min-height for this specific container */
-        /* Height will be determined by the image itself */
-    }
-
-    .image-container img {
-        display: block;
-        max-width: 100%; /* Image scales down to fit width */
-        max-height: 100%; /* Image scales down to fit height */
-        object-fit: contain; /* This is key: image scales to fit, entire image visible */
-        /* If you prefer cropping for a "full bleed" look, use object-fit: cover;
-           but then the frame height won't strictly "fit" the image's original height. */
-    }
-
-    .about-me, .contact-info {
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 40px 0;
-        border-top: 1px solid #eee; /* Subtle line above sections */
-        padding-top: 60px;
-    }
-
-    .about-me h2, .contact-info h2 {
-        font-size: 2em;
-        margin-bottom: 20px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-
-    .about-me p, .contact-info p {
-        font-size: 1.1em;
-        line-height: 1.8;
-        color: #333;
-    }
-
-    .contact-info p {
-        margin-bottom: 10px;
-    }
-
-    .contact-info a {
-        color: #000;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .contact-info a:hover {
-        color: #666;
-    }
-
-    /* Fixed Bottom Menu */
-    .bottom-menu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        padding: 20px 0;
-        text-align: center;
-        z-index: 999;
-        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1); /* Thin line above menu */
-    }
-
-    .bottom-menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        gap: 40px; /* Space between menu items */
-    }
-
-    .bottom-menu li a {
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 600;
-        text-transform: uppercase;
-        text-decoration: none;
-        color: #000;
-        font-size: 1em;
-        letter-spacing: 1.5px;
-        padding: 5px 10px;
-        transition: color 0.3s ease, letter-spacing 0.3s ease;
-    }
-
-    .bottom-menu li a:hover {
-        color: #666;
-        letter-spacing: 2px; /* Subtle hover effect */
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .navbar h1 {
-            font-size: 1.8em;
+    /* Responsive adjustments */
+    @media (max-width: 400px) {
+        .instax-container {
+            width: 90%; /* Make it take up more width on smaller screens */
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 40px;
         }
-
-        .main-content {
-            padding-top: 100px;
-            padding-bottom: 80px;
-        }
-
-        .image-gallery {
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .image-container {
-            max-width: 90%; /* Adjust for smaller screens */
-            margin: 0 auto;
-            padding: 10px; /* Adjust padding for smaller screens */
-            min-height: 300px; /* Adjust min-height for smaller screens */
-        }
-
-        .image-container--small-vertical {
-            max-width: 50%; /* Adjust smaller image for mobile */
-            padding: 6px; /* Further reduced padding for mobile */
-            min-height: unset; /* Ensure it still shrinks */
-        }
-
-        .about-me, .contact-info {
-            padding: 30px 20px;
-        }
-
-        .about-me h2, .contact-info h2 {
-            font-size: 1.6em;
-        }
-
-        .about-me p, .contact-info p {
-            font-size: 1em;
-        }
-
-        .bottom-menu ul {
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 0 10px;
-        }
-
-        .bottom-menu li a {
-            font-size: 0.9em;
-            letter-spacing: 1px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .navbar h1 {
-            font-size: 1.5em;
-        }
-
-        .main-content {
-            padding-top: 80px;
-            padding-bottom: 70px;
-        }
-
-        .image-container {
-            padding: 8px;
-            min-height: 250px; /* Further reduce min-height */
-        }
-
-        .image-container--small-vertical {
-            max-width: 60%; /* Further adjust smaller image for very small screens */
-            padding: 5px;
-        }
-
-        .bottom-menu ul {
-            gap: 10px;
-        }
-
-        .bottom-menu li a {
+        .instax-caption {
             font-size: 0.8em;
-            padding: 3px 5px;
         }
     }
 </style>
 </head>
 <body>
 
-<nav class="navbar">
-    <h1>Wiktoria Vicky Ożóg</h1>
-</nav>
-
-<main class="main-content">
-    <section class="image-gallery">
-        <div class="image-container">
-            <img src="IMG_7896.JPG" alt="Model Portfolio Image 1">
-        </div>
-        <div class="image-container">
-            <img src="IMG_8042.JPG" alt="Model Portfolio Image 2">
-        </div>
-        <div class="image-container">
-            <img src="4CB16920-041E-4F8C-A8D6-3DECC6444816.JPG" alt="Model Portfolio Image 3">
-        </div>
-        <div class="image-container">
-            <img src="487EE5D9-76DB-456D-8606-56EC6049F762.JPG" alt="Model Portfolio Image 4">
-        </div>
-        <div class="image-container">
-            <img src="IMG_7794.JPG" alt="Model Portfolio Image 5">
-        </div>
-        <div class="image-container">
-            <img src="IMG_7818.JPG" alt="Model Portfolio Image 6">
-        </div>
-        <div class="image-container">
-            <img src="IMG_7832.JPG" alt="Model Portfolio Image 7">
-        </div>
-        <div class="image-container">
-            <img src="IMG_7847.JPG" alt="Model Portfolio Image 8">
-        </div>
-        <div class="image-container">
-            <img src="IMG_7870.JPG" alt="Model Portfolio Image 9">
-        </div>
-        <div class="image-container image-container--small-vertical"> <!-- Specific class for the smaller vertical image -->
-            <img src="IMG_7367.jpg" alt="Model Portfolio Image 10">
-        </div>
-    </section>
-
-    <section class="about-me">
-        <h2>O mnie</h2>
-        <p>
-            Witaj na mojej stronie! Jestem Wiktoria, modelka z pasją do tworzenia i opowiadania historii poprzez obraz. Moja praca to nie tylko pozowanie, ale przede wszystkim współpraca z artystami, fotografami i stylistami, aby każda sesja była unikalnym dziełem. Inspiruje mnie moda, sztuka i piękno w każdej formie. Dążę do perfekcji w każdym ujęciu, wnosząc do projektu autentyczność i profesjonalizm. Zapraszam do zapoznania się z moim portfolio.
-        </p>
-    </section>
-
-    <section class="contact-info">
-        <h2>Kontakt</h2>
-        <p>Telefon: <a href="tel:+48604527521">+48 604 527 521</a></p>
-        <p>Email: <a href="mailto:wiktoriaozog2000@gmail.com">wiktoriaozog2000@gmail.com</a></p>
-    </section>
-</main>
-
-<nav class="bottom-menu">
-    <ul>
-        <li><a href="#sesja">Sesja</a></li>
-        <li><a href="#fashion">Fashion</a></li>
-        <li><a href="#video">Video</a></li>
-        <li><a href="#beauty">Beauty</a></li>
-        <li><a href="#health">Health</a></li>
-    </ul>
-</nav>
+<div class="instax-container">
+    <div class="instax-image-area">
+        <img src="IMG_7367.jpg" alt="Instax Photo">
+    </div>
+    <!-- Optional: You can add a caption here if you like -->
+    <!-- <div class="instax-caption">
+        A moment captured.
+    </div> -->
+</div>
 
 </body>
 </html>
-
